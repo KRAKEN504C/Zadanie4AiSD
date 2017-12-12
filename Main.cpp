@@ -213,10 +213,30 @@ void mergesort(int pocz, int kon, int tab[], int t[])
 
 
 
-void wszystko(int tab[], int ortab[], int n, int t[])
+void wszystko(int n)
 {
 	string file;
 
+	int *tab = new int[n];
+	int *ortab = new int[n];
+	int *t = new int[n];
+
+	for (int i = 0; i < n; i++) // wczytywanie liczb do tablicy
+	{
+		tab[i] = randGen();
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		ortab[i] = tab[i];
+	}
+
+	file = "wejscie";
+	file += to_string(n);
+	file += ".txt";
+	cout << file << endl;
+	saveToFile2(tab, n, file);
+	
 	//int *t = new int[n];
 	czas1 = clock();
 	QuickSort(tab, 0, n - 1);
@@ -235,6 +255,7 @@ void wszystko(int tab[], int ortab[], int n, int t[])
 	//Podmiana tablicy
 	for (int i = 0; i < n; i++)
 		tab[i] = ortab[i];
+	
 	//ShellSort
 	czas1 = clock();
 	shellSort(tab, n);
@@ -272,6 +293,14 @@ void wszystko(int tab[], int ortab[], int n, int t[])
 	//Podmiana tablicy
 	for (int i = 0; i < n; i++)
 		tab[i] = ortab[i];
+}
+
+void wykres()
+{
+	//Wykres liczby przestawien od ilosci danych.
+
+	//Wykres czasu wykonania funkcji sortujacych od ilosci danych
+
 }
 
 
@@ -403,13 +432,12 @@ int main()
 		tab[i] = ortab[i];
 	}
 
-	//system("pause");
-	wszystko(tab, ortab, 1000, t);
-	wszystko(tab, ortab, 25000, t);
-	wszystko(tab, ortab, 50000, t);
-	wszystko(tab, ortab, 75000, t);
-	wszystko(tab, ortab, 100000, t);
-	wszystko(tab, ortab, 150000, t);
+	wszystko(10000);
+	wszystko(25000);
+	wszystko(50000);
+	wszystko(75000);
+	wszystko(100000);
+	wszystko(150000);
 
 
 
@@ -417,7 +445,7 @@ int main()
 	delete[] tab; // zwolnienie tablicy zaalokowanej dynamicznie
 
 
-	//system("Pause");
+	system("Pause");
 	return 0;
 }
 
